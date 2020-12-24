@@ -12,41 +12,11 @@ const initialState = {
 
 // action = {type: "", payload: ---}
 const reducer = (state, action) => {
-
-    switch(action.type){
-        case "signup":
-            fetch(state.url + "/users/", {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(action.payload)
-            })
-            .then(response => response.json())
-            .then(user => {
-                return {
-                    ...state,
-                    token: user.token,
-                    username: user.userame
-                }
-            })
-            break
-        case "login":
-            fetch(state.url + "/login/", {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(action.payload)
-            })
-            .then(response => response.json())
-            .then(user => {
-                return {
-                    ...state,
-                    token: user.token,
-                    username: user.userame
-                }
-            })
+    let newState
+    switch (action.type) {
+        case "auth":
+            newState = { ...state, ...action.payload }
+            return newState
             break
         default:
             return state
