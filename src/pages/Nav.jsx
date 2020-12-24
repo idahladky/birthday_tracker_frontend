@@ -10,7 +10,6 @@ const Nav = (props) => {
         <header>
             <h1>Birthday Tracker</h1>
             <nav>
-                <Link to="/"><div>Home</div></Link>
                 {!state.token ? 
                     (<>
                         <Link to="/auth/signup"><div>Sign Up</div></Link>
@@ -18,10 +17,13 @@ const Nav = (props) => {
                     </>) 
                 : null}
                 {state.token ? 
-                    <div onClick={() => {
-                        dispatch({type: "logout"})
-                        props.history.push("/")
-                    }}>Log Out</div> 
+                   (<>
+                        <Link to="/"><div>Home</div></Link>
+                        <div onClick={() => {
+                            dispatch({type: "logout"})
+                            props.history.push("/")
+                        }}>Log Out</div> 
+                    </>)
                 : null}
             </nav>
         </header>

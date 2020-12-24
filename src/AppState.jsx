@@ -5,7 +5,19 @@ import React, { useContext, useReducer } from "react"
 const initialState = {
     url: "http://birthdaytracker.herokuapp.com",
     token: null,
-    username: null
+    username: null,
+    birthdays: null,
+    new: {
+        name: "",
+        date: "",
+        age: ""
+    },
+    edit: {
+        id: 0,
+        name: "",
+        date: "",
+        age: ""
+    }
 }
 
 // REDUCER //
@@ -22,6 +34,15 @@ const reducer = (state, action) => {
             newState = { ...state, token: null, username: null }
             window.localStorage.removeItem("auth")
             return newState
+            break
+        case "getBirthdays":
+            newState = { ...state, birthdays: action.payload }
+            return newState
+            break
+        case "select":
+            newState = { ...state, edit: action.payload } 
+            return newState
+            break
         default:
             return state
             break
