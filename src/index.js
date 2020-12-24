@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router } from "react-router-dom"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import { AppState } from "./AppState"
 
 ReactDOM.render(
   <AppState>
     <Router>
       <React.StrictMode>
-        <App />
+        <Route path="/" component={App} />
       </React.StrictMode>
     </Router>
   </AppState>,
