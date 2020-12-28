@@ -12,6 +12,8 @@ import { useAppState } from "../AppState"
 const App = (props) => {
 
   const { state, dispatch } = useAppState()
+  const { token, url, birthdays, username } = state
+
   React.useState(() => {
     const auth = JSON.parse(window.localStorage.getItem("auth"))
     if (auth) { // if logged in, pushed to the dashboard
@@ -21,6 +23,19 @@ const App = (props) => {
       props.history.push("/")
     }
   }, [])
+
+  const getBirthdays = async () => {
+      const response = await fetch(url + "/birthdays/", {
+          method: "get",
+          headers: {
+              Authorization: "bearer " + token
+          }
+      })
+      const fetchedBirthdays = await response.json()
+      dispatch({type: "getBirthdays", payload: fetchedBirthdays})
+  }
+
+  React.useEffect(() => {getBirthdays()}, [])
 
   const months = [
     {
@@ -75,11 +90,10 @@ const App = (props) => {
 
 
   return <>
-    <Route path="/" component={Nav} />
+    <Nav />
     <Switch>
-      <Route exact path="/" component={Dashboard} />
+      <Route exact path="/" render={(rp) => <Dashboard {...rp} months={months} />} />
       <Route path="/auth/:form" component={Auth} />
-      <Route path="/dashboard" component={Dashboard} />
       <Route path="/friends" component={Friends} />
       <Route exact path="/calendar" render={(rp) => <Calendar {...rp} months={months}/>} />
       <Route exact path="/calendar/:id" render={(rp) => <Month {...rp} months={months}/>} />

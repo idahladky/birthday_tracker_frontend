@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { useAppState } from "../AppState"
 
+
 const Nav = (props) => {
 
     const {state, dispatch} = useAppState()
@@ -24,7 +25,8 @@ const Nav = (props) => {
                         <div onClick={() => {
                             dispatch({type: "logout"})
                             props.history.push("/")
-                        }}>Log Out</div> 
+                        }}>Log Out</div>
+                        <Link to="/new"><button>Add a Birthday</button></Link>
                     </>)
                 : null}
             </nav>
