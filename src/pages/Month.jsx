@@ -3,10 +3,14 @@ import { Route, Link } from "react-router-dom"
 import { useAppState } from "../AppState"
 import Form from "./Form"
 
-const Friends = (props) => {
+const Month = (props) => {
 
     const { state, dispatch } = useAppState()
     const { token, url, birthdays, username } = state
+    const { months } = props
+    const month_id = props.match.params.id
+
+    const month = months[month_id - 1] // pulling the whole object out of the array
 
     const getBirthdays = async () => {
         const response = await fetch(url + "/birthdays/", {
@@ -21,18 +25,11 @@ const Friends = (props) => {
 
     React.useEffect(() => {getBirthdays()}, [])
 
+
+
     return (
         <>
-        <h1>{username.toUpperCase()}'s Friends</h1>
-        <Link to="/dashboard/new"><button>Add a Birthday</button></Link>
-        <Route path="/dashboard/:action" render={(rp) => <Form {...rp} getBirthdays={getBirthdays} />} />
-        {/* <ul>
-            {state.birthdays.map((birthday) => (
-                <div key={birthday.id}>
-                    <Link to="/birthdays">{birthday.name} </Link>
-                </div>
-            ))}
-        </ul> */}
+        <h1>{month.name}</h1>
         <ul>
             {state.birthdays.map((birthday) => (
                 <div key={birthday.id}>
@@ -52,12 +49,12 @@ const Friends = (props) => {
                         })
                         .then(() => getBirthdays())
                     }}>Delete</button>
-
                 </div>
             ))}
         </ul>
+    
         </>
     )
 }
 
-export default Friends
+export default Month

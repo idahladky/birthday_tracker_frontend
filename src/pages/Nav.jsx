@@ -18,7 +18,9 @@ const Nav = (props) => {
                 : null}
                 {state.token ? 
                    (<>
-                        <Link to="/"><div>Home</div></Link>
+                        <Link to="/dashboard"><div>Home</div></Link>
+                        <Link to="/friends"><div>Friends</div></Link>
+                        <Link to="/calendar"><div>Calendar</div></Link>
                         <div onClick={() => {
                             dispatch({type: "logout"})
                             props.history.push("/")
