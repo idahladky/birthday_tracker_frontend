@@ -19,7 +19,7 @@ const Nav = (props) => {
                 : null}
                 {state.token ? 
                    (<>
-                        <Link to="/dashboard"><div>Home</div></Link>
+                        <Link to="/home"><div>Home</div></Link>
                         <Link to="/friends"><div>Friends</div></Link>
                         <Link to="/calendar"><div>Calendar</div></Link>
                         <div onClick={() => {

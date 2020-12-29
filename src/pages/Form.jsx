@@ -39,7 +39,7 @@ const Form = (props) => {
         event.preventDefault()
         actions[action]().then((data) => {
             props.getBirthdays()
-            props.history.push("/dashboard/")
+            props.history.push("/")
         })
     }
 

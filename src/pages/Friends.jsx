@@ -6,54 +6,22 @@ import Form from "./Form"
 const Friends = (props) => {
 
     const { state, dispatch } = useAppState()
-    const { token, url, birthdays, username } = state
+    const { token, url, birthdays, username, getBirthdays } = state
 
-    const getBirthdays = async () => {
-        const response = await fetch(url + "/birthdays/", {
-            method: "get",
-            headers: {
-                Authorization: "bearer " + token
-            }
-        })
-        const fetchedBirthdays = await response.json()
-        dispatch({type: "getBirthdays", payload: fetchedBirthdays})
-    }
-
-    React.useEffect(() => {getBirthdays()}, [])
+    // React.useEffect(() => {getBirthdays()}, [])
 
     return (
         <>
-        <h1>{username.toUpperCase()}'s Friends</h1>
-        <Link to="/dashboard/new"><button>Add a Birthday</button></Link>
-        <Route path="/dashboard/:action" render={(rp) => <Form {...rp} getBirthdays={getBirthdays} />} />
-        {/* <ul>
-            {state.birthdays.map((birthday) => (
-                <div key={birthday.id}>
-                    <Link to="/birthdays">{birthday.name} </Link>
-                </div>
-            ))}
-        </ul> */}
+        <h1>Friends</h1>
         <ul>
             {state.birthdays.map((birthday) => (
-                <div key={birthday.id}>
-                    <h2>{birthday.name}</h2>
-                    <div>{birthday.date}</div>
-                    <div>{birthday.age}</div>
-                    <button onClick={() => {
-                        dispatch({type: "select", payload: birthday})
-                        props.history.push("/dashboard/edit")
-                    }}>Edit</button>
-                    <button onClick={() => {
-                        fetch(url + "/birthdays/" + birthday.id, {
-                            method: "delete",
-                            headers: {
-                                Authorization: "bearer " + token
-                            }
-                        })
-                        .then(() => getBirthdays())
-                    }}>Delete</button>
-
-                </div>
+                <Link to={`/friends/:id`}>
+                    <div key={birthday.id}>
+                        <h2>{birthday.name}</h2>
+                        <div>{birthday.date}</div>
+                        <div>{birthday.age}</div>
+                    </div>
+                </Link>
             ))}
         </ul>
         </>

@@ -13,7 +13,7 @@ const Month = (props) => {
     const month = months[month_id - 1] // pulling the whole object out of the array
 
     const getBirthdays = async () => {
-        const response = await fetch(url + "/birthdays/", {
+        const response = await fetch(url + "/birthdays/?month_id=" + month_id, {
             method: "get",
             headers: {
                 Authorization: "bearer " + token
@@ -31,24 +31,15 @@ const Month = (props) => {
         <>
         <h1>{month.name}</h1>
         <ul>
+
+        </ul>
+
+        <ul>
             {state.birthdays.map((birthday) => (
                 <div key={birthday.id}>
                     <h2>{birthday.name}</h2>
                     <div>{birthday.date}</div>
                     <div>{birthday.age}</div>
-                    <button onClick={() => {
-                        dispatch({type: "select", payload: birthday})
-                        props.history.push("/dashboard/edit")
-                    }}>Edit</button>
-                    <button onClick={() => {
-                        fetch(url + "/birthdays/" + birthday.id, {
-                            method: "delete",
-                            headers: {
-                                Authorization: "bearer " + token
-                            }
-                        })
-                        .then(() => getBirthdays())
-                    }}>Delete</button>
                 </div>
             ))}
         </ul>

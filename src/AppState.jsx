@@ -3,10 +3,11 @@ import React, { useContext, useReducer } from "react"
 
 // INITIAL STATE //
 const initialState = {
-    url: "http://birthdaytracker.herokuapp.com",
+    // url: "http://birthdaytracker.herokuapp.com",
+    url: "http://localhost:3000",
     token: null,
     username: null,
-    birthdays: null,
+    birthdays: [],
     new: {
         name: "",
         date: "",
@@ -36,6 +37,7 @@ const reducer = (state, action) => {
             return newState
             break
         case "getBirthdays":
+            console.log(action.payload)
             newState = { ...state, birthdays: action.payload }
             return newState
             break
