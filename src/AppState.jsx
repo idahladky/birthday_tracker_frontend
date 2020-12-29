@@ -18,7 +18,8 @@ const initialState = {
         name: "",
         date: "",
         age: ""
-    }
+    },
+    filteredMonth: []
 }
 
 // REDUCER //
@@ -45,6 +46,8 @@ const reducer = (state, action) => {
             newState = { ...state, edit: action.payload } 
             return newState
             break
+        case "filteredBirthdays":
+            newState = { ...state, filteredMonth: action.payload }
         default:
             return state
             break

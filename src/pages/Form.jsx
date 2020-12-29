@@ -4,7 +4,7 @@ import { useAppState } from "../AppState"
 const Form = (props) => {
     const { state, dispatch } = useAppState()
     const { token } = state
-    const action = props.match.params.action
+    const action = props.type
     const [formData, setFormData] = React.useState(state[action])
 
     const actions = {
@@ -39,7 +39,7 @@ const Form = (props) => {
         event.preventDefault()
         actions[action]().then((data) => {
             props.getBirthdays()
-            props.history.push("/")
+            props.history.push("/home")
         })
     }
 

@@ -6,28 +6,27 @@ import { useAppState } from "../AppState"
 const Show = (props) => {
 
     const { state, dispatch } = useAppState()
-    const { token, url, birthdays, username, getBirthdays } = state
+    const { token, url, birthday } = state
 
     return (
         <>
-        <p>{state.birthday.name}</p>
-        <p>{state.birthday.date}</p>
-        <p>{state.birthday.age}</p>
+        <p>{props.birthday.name}</p>
+        <p>{props.birthday.date}</p>
+        <p>{props.birthday.age}</p>
 
         <button onClick={() => {
-            dispatch({type: "select", payload: state.birthday})
+            dispatch({type: "select", payload: props.birthday})
             props.history.push("/edit")
         }}>Edit</button>
 
         <button onClick={() => {
-            fetch(url + "/birthdays/" + state.birthday.id, {
+            fetch(url + "/birthdays/" + props.birthday.id, {
                 method: "delete",
                 headers: {
                     Authorization: "bearer " + token
                 }
             })
-            // .then(() => getBirthdays())
-            props.history.push("/")
+            .then(() => (props.history.push("/home")))
         }}>Delete</button>
 
         </>

@@ -11,6 +11,7 @@ import { useAppState } from "../AppState"
 import Home from "../pages/Home"
 import Form from "../pages/Form"
 import Show from "../pages/Show"
+import Root from "../pages/Root"
 
 const App = (props) => {
 
@@ -21,11 +22,29 @@ const App = (props) => {
     const auth = JSON.parse(window.localStorage.getItem("auth"))
     if (auth) { // if logged in, pushed to the home
       dispatch({type: "auth", payload: auth})
-      props.history.push("/")
+      props.history.push("/home")
     } else { // otherwise stay at login page
       props.history.push("/")
     }
   }, [])
+
+
+  const getBirthdays = async () => {
+    if (token) {
+        console.log(token, state.token)
+        const response = await fetch(url + "/birthdays/", {
+            method: "get",
+            headers: {
+                Authorization: "bearer " + token
+            }
+        })
+        const fetchedBirthdays = await response.json()
+        console.log(state)
+        console.log(fetchedBirthdays)
+        console.log("you are here")
+        dispatch({type: "getBirthdays", payload: fetchedBirthdays})
+    }
+}
 
   const months = [
     {
@@ -78,18 +97,18 @@ const App = (props) => {
     }
 ]
 
-
   return <>
-    <Nav />
+    <Nav history={props.history}/>
     <Switch>
-        <Route exact path="/" render={(rp) => <Home {...rp} months={months}/>} />
+        <Route exact path="/" render={(rp) => <Root {...rp} />} />
+        <Route path="/home" render={(rp) => <Home {...rp} months={months}/>} />
         <Route path="/auth/:form" component={Auth} />
-        <Route exact path="/friends" render={(rp) => <Friends {...rp} months={months} />} />
-        <Route exact path="/friends/:id" render={(rp) => <Show {...rp} months={months} />} />
-        <Route exact path="/calendar" render={(rp) => <Calendar {...rp} months={months} />} />
-        <Route exact path="/calendar/:id" render={(rp) => <Month {...rp} months={months} />} />
-        <Route exact path="/edit" render={(rp) => <Form {...rp} label="update" months={months} />} />
-        <Route exact path="/new" render={(rp) => <Form {...rp} label="create" months={months} />} />
+        <Route path="/friends" render={(rp) => <Friends {...rp} months={months} />} />
+        
+        <Route path="/calendar" render={(rp) => <Calendar {...rp} months={months} />} />
+        <Route path="/calendar/:id" render={(rp) => <Month {...rp} months={months} />} />
+        <Route path="/edit" render={(rp) => <Form {...rp} label="update" months={months} type="edit" getBirthdays={getBirthdays}/>} />
+        <Route path="/new" render={(rp) => <Form {...rp} label="create" months={months} type="new" getBirthdays={getBirthdays}/>} />
     </Switch>
   </>
 }

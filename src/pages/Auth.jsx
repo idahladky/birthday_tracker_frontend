@@ -13,10 +13,11 @@ const Auth = (props) => {
 
     React.useEffect(() => {
         if (userData) {
+            console.log(userData)
             const { token, user } = userData
             dispatch({ type: "auth", payload: { token, username: user.username } })
             window.localStorage.setItem("auth", JSON.stringify({ token, username: user.username })) // store token here so user doesn't have to keep logging
-            props.history.push("/") // where it redirects after logging in
+            props.history.push("/home") // where it redirects after logging in
         }
     }, [userData])
 

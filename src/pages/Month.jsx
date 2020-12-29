@@ -25,8 +25,6 @@ const Month = (props) => {
 
     React.useEffect(() => {getBirthdays()}, [])
 
-
-
     return (
         <>
         <h1>{month.name}</h1>
