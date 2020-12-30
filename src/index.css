@@ -41,6 +41,7 @@ header h1 {
   font-size: 5.5vmax;
   padding: 1em;
   color: #000;
+  text-shadow: none;
 }
 
 nav {
@@ -105,16 +106,24 @@ h1 {
   text-shadow: 0.5px 0.5px 2px #4e4e4e;
 }
 
+ul {
+  width: 75%;
+  margin: auto;
+}
+
 ul div {
   display: flex;
   justify-content: center;
-  padding: .5em 2em;
   align-items: center;
 }
 
-/* .line-items {
+.line-items {
+  justify-content: left;
+}
 
-} */
+.line-items div, .line-items button {
+  margin: 0 1em 0 0;
+}
 
 p {
   padding: 20px;
@@ -182,4 +191,8 @@ img {
     font-family: 'Parisienne', cursive;
     font-size: 5vmax;
     box-shadow: 0px 0px 350px 1px rgb(255 230 204);
+}
+
+.single-month div {
+  padding: 0 1em;
 }

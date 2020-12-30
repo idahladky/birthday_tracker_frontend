@@ -16,15 +16,15 @@ const Friends = (props) => {
                 <div className="line-items" key={birthday.id}>
                         <div>
                             <img src={cupcake} alt="cupcake" />
-                            <h2>{birthday.name}</h2>
+                            <div>{birthday.name}</div>
                             <div>{birthday.date}</div>
                             <div>{birthday.age}</div>
-                            <button onClick={() => {
+                            <button className="submit" onClick={() => {
                                 dispatch({type: "select", payload: birthday})
                                 props.history.push("/edit")
                             }}>Edit</button>
 
-                            <button onClick={() => {
+                            <button className="submit" onClick={() => {
                                 fetch(url + "/birthdays/" + birthday.id, {
                                     method: "delete",
                                     headers: {

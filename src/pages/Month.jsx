@@ -26,10 +26,11 @@ const Month = (props) => {
 
     return (
         <>
+        <h1></h1>
         <ul>
             {filterBirthday ? filterBirthday.map((birthday) => (
-                <div key={birthday.id}>
-                    <h2>{birthday.name}</h2>
+                <div className="single-month" key={birthday.id}>
+                    <div>{birthday.name}</div>
                     <div>{birthday.date}</div>
                     <div>{birthday.age}</div>
                 </div>
