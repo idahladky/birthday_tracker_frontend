@@ -21,6 +21,12 @@ code {
   box-sizing: border-box;
 }
 
+body {
+  height: 100%;
+  background-image: radial-gradient( white 55%, orange);
+  background-repeat: no-repeat;
+}
+
 header h1, h1 {
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
@@ -93,16 +99,16 @@ p {
 }
 
 .form {
-    justify-content: center;
-    flex-direction: column;
-    width: 50%;
     margin: auto;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -55%);
 }
 
 form {
   display: flex;
   flex-direction: column;
-  padding: 2em .25em .25em;
 }
 
 input {
@@ -121,9 +127,7 @@ input {
 }
 
 img {
-  height: 10em;
-  margin: auto;
-  display: block;
+  height: 4em;
 }
 
 .calendar {

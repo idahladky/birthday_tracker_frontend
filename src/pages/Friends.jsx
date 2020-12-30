@@ -1,28 +1,40 @@
 import React from "react"
-import { Route, Link } from "react-router-dom"
 import { useAppState } from "../AppState"
-import Show from "./Show"
+import cupcake from "../images/cupcake.png"
 
 const Friends = (props) => {
 
-    const { state } = useAppState()
+    const { state, dispatch } = useAppState()
+    const { token, url } = state
     const {getBirthdays} = props
-    // React.useEffect(() => {getBirthdays()}, [])
 
     return (
         <>
         <h1>Friends</h1>
         <ul>
             {state.birthdays.map((birthday) => (
-                <div key={birthday.id}>
-                    <Route path={`/friends/${birthday.id}`} render={(rp) => <Show {...rp} birthday={birthday} getBirthdays={getBirthdays}/>} />
-                    <Link to={`/friends/${birthday.id}`}>
+                <div className="line-items" key={birthday.id}>
                         <div>
+                            <img src={cupcake} alt="cupcake" />
                             <h2>{birthday.name}</h2>
                             <div>{birthday.date}</div>
                             <div>{birthday.age}</div>
+                            <button onClick={() => {
+                                dispatch({type: "select", payload: birthday})
+                                props.history.push("/edit")
+                            }}>Edit</button>
+
+                            <button onClick={() => {
+                                fetch(url + "/birthdays/" + birthday.id, {
+                                    method: "delete",
+                                    headers: {
+                                        Authorization: "bearer " + token
+                                    }
+                                })
+                                .then(() => {getBirthdays()
+                                props.history.push("/home")})
+                            }}>Delete</button>
                         </div>
-                    </Link>
                 </div>
             ))}
         </ul>

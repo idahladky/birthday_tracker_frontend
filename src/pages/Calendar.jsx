@@ -1,10 +1,11 @@
 import React from "react"
 import { useAppState } from "../AppState"
+import Month from "../pages/Month"
 
 const Calendar = (props) => {
 
     const { state, dispatch } = useAppState()
-    // const { token, url, birthdays, username } = state
+    const { birthdays } = state
     const { months } = props
 
     // const getMonthBirthdays = (month_id) => {
@@ -13,9 +14,12 @@ const Calendar = (props) => {
 
      // create filter function to parse out month from date field (split date from dashes using middle item [month])
 
-    //  const filteredMonth = (month) => {
-    //     const filterBirthday = 
-    //  }
+     const filteredMonth = (month) => {
+        const filterBirthday = birthdays.filter((date) => {
+            return Date(date.toString().split("-")[1]) === month
+        })
+        return filterBirthday
+     }
 
     return (
         <>
@@ -23,8 +27,8 @@ const Calendar = (props) => {
         <div className="calendar">
             {months ? months.map((month) => (
                 <div className="month" key={month.id} onClick={() => {
-                    // dispatch({type: "filteredBirthdays", payload: filteredMonth(month.id)})
-                    // props.history.push(`/calendar/${month.id}`)
+                    dispatch({type: "filteredBirthdays", payload: filteredMonth(month.id)})
+                    props.history.push(`/calendar/${month.id}`)
                 }}>
                      {month.name}
                 </div>

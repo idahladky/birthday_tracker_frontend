@@ -1,9 +1,8 @@
 import React from "react"
 import { useAppState } from "../AppState"
-import cupcake from "../images/cupcake.png"
 
 const Form = (props) => {
-    const { state, dispatch } = useAppState()
+    const { state } = useAppState()
     const { token } = state
     const action = props.type
     const [formData, setFormData] = React.useState(state[action])
@@ -45,15 +44,16 @@ const Form = (props) => {
     }
 
     return (
-        <div className="form">
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" />
-                <input type="date" name="date" value={formData.date} onChange={handleChange} />
-                <input type="number" name="age" value={formData.age} onChange={handleChange} placeholder="Age" />
-                <input type="submit" className="submit" value={action.toUpperCase()} />
-            </form>
-            <img src={cupcake} alt="cupcake" />
-        </div>
+        <main>
+            <div className="form">
+                <form onSubmit={handleSubmit}>
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" />
+                    <input type="date" name="date" value={formData.date} onChange={handleChange} />
+                    <input type="number" name="age" value={formData.age} onChange={handleChange} placeholder="Age" />
+                    <input type="submit" className="submit" value={action.toUpperCase()} />
+                </form>
+            </div>
+        </main>
     )
 }
 
