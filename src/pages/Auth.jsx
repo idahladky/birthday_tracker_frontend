@@ -54,11 +54,11 @@ const Auth = (props) => {
     }
 
     return (
-        <div>
+        <div className="form">
             <form onSubmit={handleSubmit}>
                 <input type="text" name="username" value={formData.username} onChange={handleChange} />
                 <input type="text" name="password" value={formData.password} onChange={handleChange} />
-                <input type="submit" value={type} />
+                <input type="submit" value={type.toUpperCase()} />
             </form>
         </div>
     )

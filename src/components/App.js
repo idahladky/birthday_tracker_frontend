@@ -10,13 +10,12 @@ import Month from "../pages/Month"
 import { useAppState } from "../AppState"
 import Home from "../pages/Home"
 import Form from "../pages/Form"
-import Show from "../pages/Show"
 import Root from "../pages/Root"
 
 const App = (props) => {
 
   const { state, dispatch } = useAppState()
-  const { token, url, birthdays, username } = state
+  const { token, url } = state
 
   React.useState(() => {
     const auth = JSON.parse(window.localStorage.getItem("auth"))
@@ -31,7 +30,6 @@ const App = (props) => {
 
   const getBirthdays = async () => {
     if (token) {
-        console.log(token, state.token)
         const response = await fetch(url + "/birthdays/", {
             method: "get",
             headers: {
@@ -39,9 +37,6 @@ const App = (props) => {
             }
         })
         const fetchedBirthdays = await response.json()
-        console.log(state)
-        console.log(fetchedBirthdays)
-        console.log("you are here")
         dispatch({type: "getBirthdays", payload: fetchedBirthdays})
     }
 }
@@ -101,10 +96,9 @@ const App = (props) => {
     <Nav history={props.history}/>
     <Switch>
         <Route exact path="/" render={(rp) => <Root {...rp} />} />
-        <Route path="/home" render={(rp) => <Home {...rp} months={months}/>} />
+        <Route path="/home" render={(rp) => <Home {...rp} months={months} getBirthdays={getBirthdays}/>} />
         <Route path="/auth/:form" component={Auth} />
-        <Route path="/friends" render={(rp) => <Friends {...rp} months={months} />} />
-        
+        <Route path="/friends" render={(rp) => <Friends {...rp} months={months} getBirthdays={getBirthdays} />} />
         <Route path="/calendar" render={(rp) => <Calendar {...rp} months={months} />} />
         <Route path="/calendar/:id" render={(rp) => <Month {...rp} months={months} />} />
         <Route path="/edit" render={(rp) => <Form {...rp} label="update" months={months} type="edit" getBirthdays={getBirthdays}/>} />

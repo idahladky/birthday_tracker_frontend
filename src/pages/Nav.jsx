@@ -22,11 +22,11 @@ const Nav = (props) => {
                         <Link to="/home"><div>Home</div></Link>
                         <Link to="/friends"><div>Friends</div></Link>
                         <Link to="/calendar"><div>Calendar</div></Link>
-                        <div onClick={() => {
-                            dispatch({type: "logout"})
-                            props.history.push("/")
-                        }}>Log Out</div>
-                        <Link to="/new"><button>Add a Birthday</button></Link>
+                            <p onClick={() => {
+                                dispatch({type: "logout"})
+                                props.history.push("/")
+                            }}>Log Out</p>
+                        <Link className="new" to="/new"><button>Add a Birthday</button></Link>
                     </>)
                 : null}
             </nav>

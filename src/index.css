@@ -21,8 +21,11 @@ code {
   box-sizing: border-box;
 }
 
-h1 {
+header h1, h1 {
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 3.5vmax;
+  padding: 1em;
 }
 
 nav {
@@ -30,13 +33,17 @@ nav {
   justify-content: center;
 }
 
-nav a, nav div {
-  padding: 20px;
+nav div, nav p {
+  padding: .5em;
+  font-size: .8em;
+}
+
+a {
   text-decoration: none;
   color: black;
 }
 
-nav div {
+nav p {
   display: flex;
   align-items: center;
 }
@@ -45,13 +52,78 @@ nav div:hover {
   cursor: pointer;
 }
 
+.new {
+  display: flex;
+}
+
+button {
+  font-size: .75em;
+  padding: 0 1em;
+}
+
+main {
+  background-image: url("images/balloons.png");
+  background-repeat: none;
+  background-size: cover;
+  height: 82vh;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, .75);
+  height: 82vh;
+}
+
+h1 {
+  font-size: 3vmax;
+}
+
 ul div {
   display: flex;
   justify-content: center;
+  padding: .5em 2em;
+  align-items: center;
+}
+
+.line-items {
+
 }
 
 p {
   padding: 20px;
+}
+
+.form {
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 2em .25em .25em;
+}
+
+input {
+  margin: .25em 0;
+  padding: .25em;
+  color: gray;
+  font-size: .75em;
+}
+
+.submit {
+  width: 25%;
+  margin: 1em auto 0;
+  border-radius: 10px;
+  border: gray 1px solid;
+    color: black;
+}
+
+img {
+  height: 10em;
+  margin: auto;
+  display: block;
 }
 
 .calendar {

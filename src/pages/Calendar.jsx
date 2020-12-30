@@ -1,16 +1,15 @@
 import React from "react"
-import { Route, Link } from "react-router-dom"
 import { useAppState } from "../AppState"
 
 const Calendar = (props) => {
 
     const { state, dispatch } = useAppState()
     // const { token, url, birthdays, username } = state
-    const { months, getBirthdays } = props
+    const { months } = props
 
-    const getMonthBirthdays = (month_id) => {
-        console.log(month_id)
-    }
+    // const getMonthBirthdays = (month_id) => {
+    //     console.log(month_id)
+    // }
 
      // create filter function to parse out month from date field (split date from dashes using middle item [month])
 

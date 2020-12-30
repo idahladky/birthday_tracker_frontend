@@ -30,23 +30,25 @@ const Home = (props) => {
     const loaded = () => {
         console.log(birthdays)
         return (
-        <>
-        <h1>Upcoming Birthdays</h1>
-        <ul>
-            {birthdays.map((birthday) => (
-                <div key={birthday.id}>
-                <Route path={`/home/${birthday.id}`} render={(rp) => <Show {...rp} birthday={birthday}/>} />
-                <Link to={`/home/${birthday.id}`}>
-                    <div>
-                        <h2>{birthday.name}</h2>
-                        <div>{birthday.date}</div>
-                        <div>{birthday.age}</div>
-                    </div>
-                </Link>
+        <main>
+            <div className="container" >
+                <h1>Upcoming Birthdays</h1>
+                <ul>
+                    {birthdays.map((birthday) => (
+                        <div key={birthday.id}>
+                            <Route path={`/home/${birthday.id}`} render={(rp) => <Show {...rp} birthday={birthday} getBirthdays={getBirthdays}/>} />
+                            <Link to={`/home/${birthday.id}`}>
+                                <div className="line-items">
+                                    <h2>{birthday.name}</h2>
+                                    <p>{birthday.date}</p>
+                                    <p>{birthday.age}</p>
+                                </div>
+                            </Link>
+                        </div>
+                    ))}
+                </ul>
             </div>
-        ))}
-        </ul>
-        </>
+        </main>
     )}
 
     return birthdays ? loaded() : <h1>Loading</h1>

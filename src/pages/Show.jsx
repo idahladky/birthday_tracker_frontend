@@ -7,6 +7,7 @@ const Show = (props) => {
 
     const { state, dispatch } = useAppState()
     const { token, url, birthday } = state
+    const {getBirthdays} = props
 
     return (
         <>
@@ -26,8 +27,9 @@ const Show = (props) => {
                     Authorization: "bearer " + token
                 }
             })
-            .then(() => (props.history.push("/home")))
-        }}>Delete</button>
+            .then(() => {getBirthdays()
+            props.history.push("/home")})
+            }}>Delete</button>
 
         </>
     )
