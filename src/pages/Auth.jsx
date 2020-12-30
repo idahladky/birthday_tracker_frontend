@@ -53,14 +53,15 @@ const Auth = (props) => {
         })
     }
 
-    return (
-        <div className="form">
+    return (<>
+        <div className="form auth">
             <form onSubmit={handleSubmit}>
-                <input type="text" name="username" value={formData.username} onChange={handleChange} />
-                <input type="text" name="password" value={formData.password} onChange={handleChange} />
-                <input type="submit" value={type.toUpperCase()} />
+                <input type="text" placeholder="Username" name="username" value={formData.username} onChange={handleChange} />
+                <input type="password" placeholder="Password" name="password" value={formData.password} onChange={handleChange} />
+                <input type="submit" className="auth-submit" value={type.toUpperCase()} />
             </form>
         </div>
+        </>
     )
 }
 

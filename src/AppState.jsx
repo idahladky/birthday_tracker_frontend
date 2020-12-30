@@ -3,8 +3,8 @@ import React, { useContext, useReducer } from "react"
 
 // INITIAL STATE //
 const initialState = {
-    // url: "http://birthdaytracker.herokuapp.com",
-    url: "http://localhost:3000",
+    url: "https://birthdaytracker.herokuapp.com",
+    // url: "http://localhost:3000",
     token: null,
     username: null,
     birthdays: [],

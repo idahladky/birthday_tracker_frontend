@@ -1,20 +1,13 @@
 import React from "react"
 import { useAppState } from "../AppState"
-import Month from "../pages/Month"
 
 const Calendar = (props) => {
 
     const { state, dispatch } = useAppState()
     const { birthdays } = state
     const { months } = props
-
-    // const getMonthBirthdays = (month_id) => {
-    //     console.log(month_id)
-    // }
-
-     // create filter function to parse out month from date field (split date from dashes using middle item [month])
-
-     const filteredMonth = (month) => {
+    
+    const filteredMonth = (month) => {
         const filterBirthday = birthdays.filter((date) => {
             return Date(date.toString().split("-")[1]) === month
         })

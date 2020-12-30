@@ -1,18 +1,10 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
-
+/* header, button, months */
 @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+/* nav */
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+
+/* heading */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
 
 * {
   margin: 0;
@@ -23,20 +15,38 @@ code {
 
 body {
   height: 100%;
-  background-image: radial-gradient( white 55%, orange);
+  min-height: 100vh;
+  background-image: radial-gradient( white 55%, rgb(241, 153, 70));
   background-repeat: no-repeat;
+}
+
+.square {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.square img {
+  height: 9em;
 }
 
 header h1, h1 {
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 3.5vmax;
+}
+
+header h1 {
+  font-family: 'Parisienne', cursive;
+  font-weight: 700;
+  font-size: 5.5vmax;
   padding: 1em;
+  color: #000;
 }
 
 nav {
   display: flex;
   justify-content: center;
+  font-family: 'Cutive Mono', monospace;
 }
 
 nav div, nav p {
@@ -60,18 +70,26 @@ nav div:hover {
 
 .new {
   display: flex;
+  margin-left: 2.5em;
 }
 
 button {
   font-size: .75em;
   padding: 0 1em;
+  box-shadow: inset 0px 0px 20px 2px rgb(140 213 214);
+  background-color: transparent;
+  border: solid 0px rgb(140 213 214);
+  color: rgb(84, 196, 198);
+  font-family: 'Parisienne', cursive;
+  border-radius: 230px;
+  text-shadow: 0.25px 0.25px rgb(78 166 167);
 }
 
 main {
   background-image: url("images/balloons.png");
-  background-repeat: none;
+  background-repeat: no-repeat;
   background-size: cover;
-  height: 82vh;
+  min-height: 82vh;
 }
 
 .container {
@@ -81,6 +99,10 @@ main {
 
 h1 {
   font-size: 3vmax;
+  padding: 1em;
+  font-family: 'Raleway', sans-serif;
+  color: rgb(51, 197, 199);
+  text-shadow: 0.5px 0.5px 2px #4e4e4e;
 }
 
 ul div {
@@ -90,9 +112,9 @@ ul div {
   align-items: center;
 }
 
-.line-items {
+/* .line-items {
 
-}
+} */
 
 p {
   padding: 20px;
@@ -101,9 +123,9 @@ p {
 .form {
     margin: auto;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -55%);
+    transform: translate(-50%, -50%);
 }
 
 form {
@@ -111,19 +133,29 @@ form {
   flex-direction: column;
 }
 
+.auth-submit {
+  color: black
+}
+
 input {
   margin: .25em 0;
   padding: .25em;
   color: gray;
   font-size: .75em;
+  background-color: rgb(253, 226, 208);
+  border-radius: 7.5px;
 }
 
 .submit {
-  width: 25%;
   margin: 1em auto 0;
-  border-radius: 10px;
+  border-radius: 25px;
   border: gray 1px solid;
-    color: black;
+  color: black;
+  background-color: rgb(84, 196, 198);
+  box-shadow: 3px 3px 5px grey;
+  font-size: 1.75vmax;
+  padding: 1vmax 4.5vmax;
+  font-family: 'Cutive Mono', monospace;
 }
 
 img {
@@ -137,23 +169,17 @@ img {
 }
 
 .month {
-  border: 1px rgb(218, 218, 218) solid;
-  height: 300px;
-  width: 300px;
-  margin: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* background-color: peachpuff; */
-  background-image: url("images/honeycomb_background.jpg");
-  background-repeat: none;
-  background-size: cover;
-}
-
-.month a {
-  text-decoration: none;
-  color: black; 
-  padding: 15px 0;
-  font-family: 'Parisienne', cursive;
-  font-size: 5vmax;
+  border: 1px rgb(253 243 233) solid;
+    height: 300px;
+    width: 300px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("images/honeycomb_background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Parisienne', cursive;
+    font-size: 5vmax;
+    box-shadow: 0px 0px 350px 1px rgb(255 230 204);
 }

@@ -2,8 +2,8 @@ import React from "react"
 import { useAppState } from "../AppState"
 
 const Form = (props) => {
-    const { state } = useAppState()
-    const { token } = state
+    const { state, dispatch } = useAppState()
+    const { token, getBirthdays } = state
     const action = props.type
     const [formData, setFormData] = React.useState(state[action])
 

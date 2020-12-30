@@ -8,11 +8,11 @@ const Month = (props) => {
     const month_id = props.match.params.id //single month number
 
     const filteredMonth = (month) => {        
-        const thisBirthday = birthdays.filter((val) => { //filter each index as an object
-           if (month <= 9) { 
-                return val.date.toString().split("-")[1][1] == month // check for the date
-            } else {
-                return val.date.toString().split("-")[1] == month
+        const thisBirthday = birthdays.filter((val) => { 
+           if (month <= 9) { // if the number is less than 09 (so, January - September)
+                return val.date.toString().split("-")[1] == `0${month}` // turn the date into a string, split it by the dash, check for the first number and the second number (09) and see if it equals similar to the month number
+            } else { // October - December
+                return val.date.toString().split("-")[1] == month // checks for the first number and the second number (10) and see if it equals similar to the month number
             }
         })
         return thisBirthday

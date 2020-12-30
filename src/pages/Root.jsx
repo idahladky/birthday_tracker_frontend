@@ -1,13 +1,15 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, Route } from "react-router-dom"
+import balloons from "../images/balloons.png"
 
 const Root = (props) => {
 
     return (
-        <>
-        <Link to="/auth/signup"><button>Sign Up</button></Link>
-        <Link to="/auth/login"><button>Log In</button></Link>
-        </>
+        <div className="square">
+            <Link to="/auth/signup">
+                <img src={balloons} />
+            </Link>
+        </div>
     )
 
 }
